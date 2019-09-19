@@ -19,21 +19,29 @@ public class Item {
     private final Name name;
     private final ExpiryDate expiryDate;
 
+    // Remark fields
+    private final Remark remark;
+
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Item(Name name, ExpiryDate expiryDate, Set<Tag> tags) {
+    public Item(Name name, ExpiryDate expiryDate, Set<Tag> tags, Remark remark) {
         requireAllNonNull(name, expiryDate, tags);
         this.name = name;
         this.expiryDate = expiryDate;
         this.tags.addAll(tags);
+        this.remark = remark;
     }
 
     public Name getName() {
         return name;
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     public ExpiryDate getExpiryDate() {
@@ -96,6 +104,8 @@ public class Item {
                 .append(getExpiryDate().toString())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
+        builder.append(" Remark: ")
+                .append(getRemark().toString());
         return builder.toString();
     }
 

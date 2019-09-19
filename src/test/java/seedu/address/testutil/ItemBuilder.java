@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Name;
+import seedu.address.model.item.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -16,15 +17,18 @@ public class ItemBuilder {
 
     public static final String DEFAULT_NAME = "Kiwi";
     public static final String DEFAULT_EXPIRY_DATE = "1/2/2019";
+    public static final String DEFAULT_REMARK = "$5";
 
     private Name name;
     private ExpiryDate expiryDate;
     private Set<Tag> tags;
+    private Remark remark;
 
     public ItemBuilder() {
         name = new Name(DEFAULT_NAME);
         expiryDate = new ExpiryDate(DEFAULT_EXPIRY_DATE);
         tags = new HashSet<>();
+        remark = new Remark(DEFAULT_REMARK);
     }
 
     /**
@@ -34,6 +38,7 @@ public class ItemBuilder {
         name = personToCopy.getName();
         expiryDate = personToCopy.getExpiryDate();
         tags = new HashSet<>(personToCopy.getTags());
+        remark = personToCopy.getRemark();
     }
 
     /**
@@ -62,7 +67,7 @@ public class ItemBuilder {
 
 
     public Item build() {
-        return new Item(name, expiryDate, tags);
+        return new Item(name, expiryDate, tags, remark);
     }
 
 }

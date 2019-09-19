@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Name;
+import seedu.address.model.item.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,17 +26,23 @@ class JsonAdaptedItem {
     private final String name;
     private final String expiryDate;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String remarked;
 
     /**
      * Constructs a {@code JsonAdaptedItem} with the given item details.
      */
     @JsonCreator
     public JsonAdaptedItem(@JsonProperty("name") String name, @JsonProperty("expiryDate") String expiryDate,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remarked") String remarked) {
         this.name = name;
         this.expiryDate = expiryDate;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (remarked != null) {
+            this.remarked = remarked;
+        } else {
+            this.remarked = "";
         }
     }
 
@@ -48,6 +55,7 @@ class JsonAdaptedItem {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        remarked = source.getRemark().toString();
     }
 
     /**
@@ -79,7 +87,8 @@ class JsonAdaptedItem {
         final ExpiryDate modelExpiryDate = new ExpiryDate(expiryDate);
 
         final Set<Tag> modelTags = new HashSet<>(itemTags);
-        return new Item(modelName, modelExpiryDate, modelTags);
+        final Remark modelRemark = new Remark(remarked);
+        return new Item(modelName, modelExpiryDate, modelTags, modelRemark);
     }
 
 }

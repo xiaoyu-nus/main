@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Name;
+import seedu.address.model.item.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -89,8 +90,9 @@ public class EditCommand extends Command {
         Name updatedName = editItemDescriptor.getName().orElse(itemToEdit.getName());
         ExpiryDate updatedExpiryDate = editItemDescriptor.getExpiryDate().orElse(itemToEdit.getExpiryDate());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
+        Remark updateRemark = editItemDescriptor.getRemark().orElse(itemToEdit.getRemark());
 
-        return new Item(updatedName, updatedExpiryDate, updatedTags);
+        return new Item(updatedName, updatedExpiryDate, updatedTags, updateRemark);
     }
 
     @Override
@@ -119,6 +121,7 @@ public class EditCommand extends Command {
         private Name name;
         private ExpiryDate expiryDate;
         private Set<Tag> tags;
+        private Remark remark;
 
         public EditItemDescriptor() {}
 
@@ -130,13 +133,14 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setExpiryDate(toCopy.expiryDate);
             setTags(toCopy.tags);
+            setRemark(toCopy.remark);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, expiryDate, tags);
+            return CollectionUtil.isAnyNonNull(name, expiryDate, tags, remark);
         }
 
         public void setName(Name name) {
@@ -155,7 +159,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(expiryDate);
         }
 
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -171,6 +174,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
         }
 
         @Override
@@ -190,7 +201,8 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getExpiryDate().equals(e.getExpiryDate())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getRemark().equals(e.getRemark());
         }
     }
 }

@@ -14,6 +14,7 @@ import seedu.address.model.item.Email;
 import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Name;
 import seedu.address.model.item.Phone;
+import seedu.address.model.item.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -94,6 +95,17 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String remark} into an {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Remark parseRemark(String remark) {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
     }
 
     /**

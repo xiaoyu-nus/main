@@ -27,6 +27,8 @@ public class ItemCard extends UiPart<Region> {
     public final Item item;
 
     @FXML
+    private Label remark;
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;
@@ -46,6 +48,7 @@ public class ItemCard extends UiPart<Region> {
         item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        remark.setText(item.getRemark().value);
     }
 
     @Override

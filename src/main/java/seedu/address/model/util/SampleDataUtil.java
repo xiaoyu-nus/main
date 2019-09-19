@@ -9,6 +9,7 @@ import seedu.address.model.ReadOnlyExpiryDateTracker;
 import seedu.address.model.item.ExpiryDate;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Name;
+import seedu.address.model.item.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -18,9 +19,9 @@ public class SampleDataUtil {
     public static Item[] getSampleItems() {
         return new Item[] {
             new Item(new Name("Alex Yeoh"), new ExpiryDate("1234567"),
-                getTagSet("friends")),
+                getTagSet("friends"), new Remark("remark")),
             new Item(new Name("Bernice Yu"), new ExpiryDate("99272758"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("colleagues", "friends"), new Remark("remark")),
         };
     }
 
