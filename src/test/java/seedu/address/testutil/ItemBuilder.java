@@ -65,6 +65,14 @@ public class ItemBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Remark} of the {@code Item} that we are building.
+     */
+    public ItemBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
 
     public Item build() {
         return new Item(name, expiryDate, tags, remark);

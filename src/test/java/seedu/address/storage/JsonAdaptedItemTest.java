@@ -28,6 +28,8 @@ public class JsonAdaptedItemTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = KIWI.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
+    private static final String VALID_REMARK = KIWI.getRemark().toString();
+
 
     @Test
     public void toModelType_validItemDetails_returnsPerson() throws Exception {
@@ -38,14 +40,14 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedItem item =
-                new JsonAdaptedItem(INVALID_NAME, VALID_EXPIRY_DATE, VALID_TAGS);
+                new JsonAdaptedItem(INVALID_NAME, VALID_EXPIRY_DATE, VALID_TAGS, VALID_REMARK);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedItem item = new JsonAdaptedItem(null, VALID_EXPIRY_DATE, VALID_TAGS);
+        JsonAdaptedItem item = new JsonAdaptedItem(null, VALID_EXPIRY_DATE, VALID_TAGS, VALID_REMARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
@@ -54,14 +56,14 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_invalidExpiryDate_throwsIllegalValueException() {
         JsonAdaptedItem item =
-                new JsonAdaptedItem(VALID_NAME, INVALID_EXPIRY_DATE, VALID_TAGS);
+                new JsonAdaptedItem(VALID_NAME, INVALID_EXPIRY_DATE, VALID_TAGS, VALID_REMARK);
         String expectedMessage = ExpiryDate.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
 
     @Test
     public void toModelType_nullExpiryDate_throwsIllegalValueException() {
-        JsonAdaptedItem item = new JsonAdaptedItem(VALID_NAME, null, VALID_TAGS);
+        JsonAdaptedItem item = new JsonAdaptedItem(VALID_NAME, null, VALID_TAGS, VALID_REMARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ExpiryDate.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, item::toModelType);
     }
@@ -71,7 +73,7 @@ public class JsonAdaptedItemTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedItem item =
-                new JsonAdaptedItem(VALID_NAME, VALID_EXPIRY_DATE, invalidTags);
+                new JsonAdaptedItem(VALID_NAME, VALID_EXPIRY_DATE, invalidTags, VALID_REMARK);
         assertThrows(IllegalValueException.class, item::toModelType);
     }
 

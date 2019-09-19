@@ -37,6 +37,11 @@ public class CommandTestUtil {
     public static final String VALID_EXPIRY_DATE_BANANA = "1/2/2019";
     public static final String VALID_EXPIRY_DATE_MILK = "1/2/2019";
 
+    public static final String VALID_REMARK_KIWI = "sweet";
+    public static final String VALID_REMARK_APPLE = "green";
+    public static final String VALID_REMARK_BANANA = "for brownie";
+    public static final String VALID_REMARK_MILK = "2L";
+
     public static final String VALID_TAG_FRUIT = "fruit";
     public static final String VALID_TAG_DRINK = "drink";
     public static final String VALID_TAG_GREEN = "green";
