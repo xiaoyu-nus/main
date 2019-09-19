@@ -10,7 +10,10 @@ import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Remark;
 
-public class RemarkCommandParser implements Parser{
+/**
+ * Parses input arguments and creates a new RemarkCommand object
+ */
+public class RemarkCommandParser implements Parser {
 
     @Override
     public RemarkCommand parse(String args) throws ParseException {

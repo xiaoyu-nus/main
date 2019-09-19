@@ -52,7 +52,7 @@ public class RemarkCommand extends Command {
 
         Item itemToEdit = lastShownList.get(index.getZeroBased());
         Item editedItem = new Item(itemToEdit.getName(),
-                itemToEdit.getExpiryDate(),itemToEdit.getTags(), remark);
+                itemToEdit.getExpiryDate(), itemToEdit.getTags(), remark);
 
         model.setItem(itemToEdit, editedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);

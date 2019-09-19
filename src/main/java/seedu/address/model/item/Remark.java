@@ -2,6 +2,9 @@ package seedu.address.model.item;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Represents an Item's Remark in the ExpiryDateTracker.
+ */
 public class Remark {
     public static final String MESSAGE_CONSTRAINTS = "Remark can take any values, and it should not be blank";
 
